@@ -1,11 +1,11 @@
 // Importing modules
-const express = require('express');
-const url = require('url');
-const fs = require('fs');
+import express from 'express';
+import url from 'url';
+import fs from 'fs';
 
 // Initializing the express and port number
 const app = express();
-const port = process.env.PORT || 3000
+const port = parseInt(process.env.PORT) || 8080
 
 // read static files
 app.use(express.static('public'));

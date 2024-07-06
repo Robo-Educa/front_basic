@@ -2,12 +2,18 @@
   "name": "front_basic",
   "version": "1.0.0",
   "description": "FrontEnd básico para login na plataforma",
+  "private": true,
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": ">=20.12.2"
+  },
+  "author": "Robô Educa",
+  "license": "Apache-2.0",
   "dependencies": {
     "express": "^4.19.2"
   }
