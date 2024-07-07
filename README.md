@@ -29,9 +29,17 @@ $ node index.js
 ```
 4. Teste no Navegador
 ```
-http://localhost:3000/
+http://localhost:8080/
 ```
 
+### Como publicar no Google Cloud Run
+* Na console do GCP Cloud SDK Shell :
+```
+$ cd front-basic
+$ gcloud components update
+$ gcloud init
+$ gcloud run deploy --source .
+```
 
 ### Como criar um projeto em NODE.js do zero - Passo a passo (Windows): 
 
@@ -46,7 +54,7 @@ $ cd\nome_do_projeto
 $ npm init
 ```
 
-* Instale eventuais bibliotecas/dependências relativas ao projeto. Ex:
+* Instale eventuais bibliotecas/dependências relativas ao projeto. Exemplo:
 ```
 $ npm install express
 ```
