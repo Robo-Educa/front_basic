@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Robô Educa</title>
+
 <style>
     body {
         margin: 0;
@@ -34,7 +35,7 @@
         margin: 10px;
         padding: 15px 30px;
         font-size: 1.2rem;
-        background-color: #ec261f; /* Cor azul para os botões */
+        background-color: #1fec74; /* Cor azul para os botões */
         color: white;
         border: none;
         cursor: pointer;
@@ -44,13 +45,13 @@
 
     .secao1 button:hover {
         background-color: #0b1635; /* Cor azul mais escura ao passar o mouse */
-    }
-
-    
+    }    
 </style>
 
-<!-- Incluir a fonte Press Start 2P do Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<script type="text/javascript" src="src/mediaDevices.js"></script>
 
 </head>
 <body>
@@ -58,8 +59,24 @@
 <!-- Seção 1 -->
 <section class="secao1">
     <h1>Robô Educa</h1>
-    <a href="login.html"> <button>Entrar</button> </a>
+    <button type="button" onclick="getPermissions();"><i class="fa fa-4x fa-play"></i></button>
 </section>
+
+<script type="text/javascript" >
+    // Obtem status de permissão de uso de Microfone e direciona o usuário para a página correspondente
+    async function getPermissions() {
+        let micPermission = await getStatusPermission('microphone');    
+        if (micPermission == 'granted') {
+            window.location.href = "interaction.html"
+        } else if (micPermission == 'prompt') {
+            window.location.href = "devicePrompt.html";
+        } else if (micPermission == 'denied') {
+            window.location.href = "deviceDenied.html";
+        } else if (micPermission == 'notFound') {
+            window.location.href = "deviceNotFound.html";
+        }
+    }
+</script>
 
 </body>
 </html>
