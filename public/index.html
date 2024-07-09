@@ -1,82 +1,164 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robô Educa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robô Educa</title>
 
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
+    <style>
+        body {
+            text-align: center;
+            align-items: center;
+            font-family: "Audiowide", sans-serif;
+            color: black;
+            background-image: linear-gradient(to right, #662d91 0%, #BC70A4 50%, #BFD641 100%);
+            padding: auto;
+        }
 
-    /* Estilo para a primeira seção */
-    .secao1 {
-        height: 100vh; /* altura total da viewport */
-        background-image: url('images/background.jpg'); /* caminho para a imagem de fundo */
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-        font-family: 'Press Start 2P', sans-serif; /* Fonte estilo "Gamers" */
-        color: white;
-    }
+        i.fa {
+            display: inline-block;
+            border-radius: 15px 15px 15px 15px;
+            box-shadow: 0 0 4px black;
+            padding: 0.2em 0.2em;
+            margin-left: 5px;
+            margin-right: 5px;
+            align-items: center;
+        }
 
-    .secao1 h1 {
-        font-size: 4em; /* Tamanho da fonte 3 vezes maior */
-        margin-bottom: 20px;
-    }
+        button {
+            border-radius: 15px 15px 15px 15px;
+            box-shadow: 0 0 1px black;
+            padding: 0.5em 0.5em;
+            font-size: large;
+        }
 
-    .secao1 button {
-        margin: 10px;
-        padding: 15px 30px;
-        font-size: 1.2rem;
-        background-color: #1fec74; /* Cor azul para os botões */
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
+        #DeviceDeniedHeader {
+            text-align: center;
+            align-items: center;
+            height: auto;
+            background-color: #1fc8db;
+            background-image: linear-gradient(140deg, #662d91 0%, #BC70A4 50%, #BFD641 75%);
+            opacity: 0.95;
+            padding: 20px
+        }
 
-    .secao1 button:hover {
-        background-color: #0b1635; /* Cor azul mais escura ao passar o mouse */
-    }    
-</style>
+        #DeviceDeniedBrowsers {
+            text-align: left;
+            align-items: left;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        #divAuxComands {
+            text-align: right;
+            align-items: right;
+            width: auto;
+        }
 
-<script type="text/javascript" src="src/mediaDevices.js"></script>
+        img {
+            max-width: 100%;
+            height: auto;
+            width: auto\9;
+            /* ie8 */
+        }
+
+        #divSpinner {
+            text-align: center;
+            align-items: center;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        label {
+            float: left;
+            width: 10%;
+            line-height: 1.5;
+        }
+
+        .rate-value,
+        .pitch-value {
+            float: right;
+            width: 5%;
+            line-height: 1.5;
+        }
+
+        #rate,
+        #pitch {
+            float: right;
+            width: 75%;
+        }
+
+        li {
+            text-align: left;
+            align-items: left;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide&effect=shadow-multiple">
+
+    <script type="text/javascript" src="src/mediaDevices.js"></script>
+    <script type="text/javascript" src="src/display.js"></script>    
 
 </head>
+
 <body>
 
-<!-- Seção 1 -->
-<section class="secao1">
-    <h1>Robô Educa</h1>
-    <button type="button" onclick="getPermissions();"><i class="fa fa-4x fa-play"></i></button>
-</section>
+    <div id="divMenu">
+        <h1 class="font-effect-shadow-multiple">Robô Educa</h1>
+        <button type="button" onclick="getPermissions();"><i class="fa fa-4x fa-play"></i></button>&nbsp;&nbsp;&nbsp;
+        <h1 class="font-effect-shadow-multiple">Construa seu próprio Robô</h1>
+    </div>
 
-<script type="text/javascript" >
-    // Obtem status de permissão de uso de Microfone e direciona o usuário para a página correspondente
-    async function getPermissions() {
-        let micPermission = await getStatusPermission('microphone');    
-        if (micPermission == 'granted') {
-            window.location.href = "interaction.html"
-        } else if (micPermission == 'prompt') {
-            window.location.href = "devicePrompt.html";
-        } else if (micPermission == 'denied') {
-            window.location.href = "deviceDenied.html";
-        } else if (micPermission == 'notFound') {
-            window.location.href = "deviceNotFound.html";
+    <div id="divStartPublic" style="display: none;">
+        <div id="divAuxComands">
+            <button type="button" onclick="quit();"><i class="fa fa-undo"></i></button>
+        </div>
+        <button type="button"><i class="fa fa-4x fa-eye"></i></button>
+        <button type="button"><i class="fa fa-4x fa-eye"></i></button>
+        <br><br>
+        <button type="button"><i class="fa fa-4x fa-microphone"></i></button>
+        <br><br>
+    </div>
+
+    <div id="divImage" style="display: none;">
+        <img id="divImageImg" src="images/wavesOn.gif" alt="Imagem de ondas sonoras"><br>
+    </div>
+
+    <script type="text/javascript">
+
+        async function getPermissions() {
+            let micPermission = await getStatusPermission('microphone');
+            switch (micPermission) {
+                case 'granted':
+                    let speechPermission = await getStatusSpeechRecognition();
+                    if (speechPermission == "granted") {
+                        openFullscreen();
+                        start();    
+                    } else {
+                        goToPage("deviceError.html")                
+                    }                    
+                    break;
+                case 'prompt':
+                    goToPage("devicePrompt.html")   
+                    break;
+                case 'denied':
+                    goToPage("deviceDenied.html")   
+                    break;
+                case 'notFound':
+                    goToPage("deviceNotFound.html")   
+                    break;                
+            }            
         }
-    }
-</script>
+
+        function quit() {
+            quitStart();
+            closeFullscreen();
+        }
+        
+    </script>
 
 </body>
+
 </html>

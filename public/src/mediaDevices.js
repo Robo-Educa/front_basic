@@ -41,3 +41,20 @@ async function micPrompt() {
         });
     return permission;
 }
+
+/**
+ * Verifica se Recurso de reconhecimento de fala está disponível no Browser.
+ *
+ * @returns {string} - 'granted', 'error'
+ */
+async function getStatusSpeechRecognition() {
+    var response;
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        console.log("Recurso de reconhecimento de fala não disponível neste Browser. Utilize outro navegador")
+        response = "error";
+    } else {
+        response = "granted";
+    }
+    return response;
+}
